@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
-            {
+      {
         path: 'patient',
         loadChildren: () => import('./patient/patient.module').then(m => m.PatientModule)
       },
