@@ -1,19 +1,89 @@
-<nz-layout class="layout">
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="256px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a [routerLink]="['/home']">
+        <div class="logo-vet">
+          <i class="fa-solid fa-shield-dog"></i>
+          <h4 *ngIf="!isCollapsed">MyVet</h4>
+        </div>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Pacientes" nzIcon="file-text">
+        <ul>
+          <li nz-submenu nzOpen nzTitle="Registro" nzIcon="">
+            <ul>
+              <li nz-menu-item nzMatchRouter>
+                <a [routerLink]="['/home/patient/list']">Pacientes</a>
+              </li>
+              <li nz-menu-item nzMatchRouter>
+                <a [routerLink]="['/home/owner']">Dueños</a>
+              </li>
+            </ul>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/home/patient/query/list']">Consultas</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/home/patient/turn/list']">Turnos</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Usuarios" nzIcon="user">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/home/user']">Médicos</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/home/user']">Recepcionistas</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Servicios" nzIcon="shopping">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/home/service/hairdressing/list']">Peluqueria</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/home/service/hosting/list']">Hosting</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Ventas" nzIcon="barcode">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/home/sale/sale']">Ventas</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/home/sale/products/list']">Productos</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['/home/sale/medicine/list']">Medicamentos</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
     <nz-header>
-      <div class="logo"></div>
-      <ul nz-menu nzTheme="dark" nzMode="horizontal">
-        <li nz-menu-item>nav 1</li>
-        <li nz-menu-item>nav 2</li>
-        <li nz-menu-item>nav 3</li>
-      </ul>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <span class="trigger"
+               nz-icon
+               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></span>
+        </span>
+      </div>
     </nz-header>
     <nz-content>
-      <nz-breadcrumb>
-        <nz-breadcrumb-item>Home</nz-breadcrumb-item>
-        <nz-breadcrumb-item>List</nz-breadcrumb-item>
-        <nz-breadcrumb-item>App</nz-breadcrumb-item>
-      </nz-breadcrumb>
-      <div class="inner-content"><router-outlet></router-outlet></div>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
     </nz-content>
-    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
   </nz-layout>
+</nz-layout>

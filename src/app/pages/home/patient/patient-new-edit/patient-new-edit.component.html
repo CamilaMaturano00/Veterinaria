@@ -1,0 +1,71 @@
+<h2>Registra paciente</h2>
+<br>
+<form nz-form [formGroup]="form" nzLayout="vertical" (ngSubmit)="save()">
+<div style="width: 100%;">
+  <div>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="patientname">Nombre de paciente</nz-form-label>
+      <nz-form-control [nzSpan]="6" [nzErrorTip]="patientname">
+        <input nz-input formControlName="patientname" type="text">
+      </nz-form-control>
+      <ng-template #patientname let-control>
+        <ng-container *ngIf="control.hasError('required')">Debe ingresar un nombre de paciente.</ng-container>
+      </ng-template>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="weight">Peso</nz-form-label>
+      <nz-form-control [nzSpan]="6" [nzErrorTip]="weight">
+        <input nz-input formControlName="weight" type="text">
+      </nz-form-control>
+      <ng-template #weight let-control>
+        <ng-container *ngIf="control.hasError('required')">Debe ingresar el peso.</ng-container>
+      </ng-template>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="sex">Sexo</nz-form-label>
+      <nz-form-control [nzSpan]="6" nzErrorTip="Debe seleccionar un sexo.">
+        <nz-select formControlName="sex" nzPlaceHolder="Seleccione">
+          <nz-option *ngFor="let o of sexo" [nzValue]="o" [nzLabel]="o"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="species">Especie</nz-form-label>
+      <nz-form-control [nzSpan]="6" nzErrorTip="Debe seleccionar una especie.">
+        <nz-select formControlName="species" nzPlaceHolder="Seleccione una especie">
+          <nz-option *ngFor="let o of species" [nzValue]="o" [nzLabel]="o"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="owner">Dueño</nz-form-label>
+      <nz-form-control [nzSpan]="6" nzErrorTip="Debe seleccionar un dueño.">
+        <nz-select nzShowSearch nzAllowClear formControlName="owner" nzPlaceHolder="Seleccione un dueño">
+          <nz-option *ngFor="let o of owners" [nzValue]="o" [nzLabel]="o"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+  <div>
+    <nz-upload
+      class="avatar-uploader"
+      nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      nzName="avatar"
+      nzListType="picture-card"
+      [nzShowUploadList]="false"
+      [nzBeforeUpload]="beforeUpload"
+      (nzChange)="handleChange($event)"
+    >
+    <ng-container *ngIf="!avatarUrl">
+      <span class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></span>
+      <div class="ant-upload-text">Upload</div>
+    </ng-container>
+    <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
+  </nz-upload>
+  </div>
+</div>
+<button nz-button nzShape="round" [routerLink]="['/home/patient/list']">Cancelar</button>
+<button nz-button class="save-button" nzType="primary" nzShape="round" [nzLoading]="isSaving" [disabled]="isLoading">Guardar</button>
+
+</form>
+
