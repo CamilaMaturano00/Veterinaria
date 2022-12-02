@@ -3,34 +3,39 @@
       <h2>Listado de pacientes</h2>
     </div>
     <div nz-col nzFlex="150px">
-      <button nz-button nzType="primary" nzShape="round" [routerLink]="['/home/user/new']">
+      <button nz-button nzType="primary" nzShape="round" [routerLink]="['/home/patient/new']">
         <i nz-icon nzType="plus"></i> Nuevo paciente
       </button>
     </div>
-  </div>
-   <div>
-    <nz-table #basicTable [nzData]="listOfData">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Address</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of basicTable.data">
-            <td>{{ data.name }}</td>
-            <td>{{ data.age }}</td>
-            <td>{{ data.address }}</td>
-            <td>
-              <a>Action 一 {{ data.name }}</a>
-              <nz-divider nzType="vertical"></nz-divider>
-              <a>Delete</a>
-            </td>
-          </tr>
-        </tbody>
-      </nz-table>
-   </div>
-  
-  
+</div>
+<nz-divider class="divider"></nz-divider>
+<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+    <thead>
+      <tr>
+        <th nzCustomFilter>
+          Name
+          <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+            <span nz-icon nzType="search"></span>
+          </nz-filter-trigger>
+        </th>
+        <th>Age</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of nzTable.data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.age }}</td>
+        <td>{{ data.address }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+      <div class="search-box">
+        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+        <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+        <button nz-button nzSize="small" (click)="reset()">Reset</button>
+      </div>
+    </div>
+  </nz-dropdown-menu>

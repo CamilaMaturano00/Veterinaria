@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-interface Person {
-  key: string;
+interface DataItem {
   name: string;
   age: number;
   address: string;
@@ -18,23 +17,40 @@ export class PatientComponent implements OnInit {
 
   ngOnInit() {
   }
-  listOfData: Person[] = [
+  
+  searchValue = '';
+  visible = false;
+  listOfData: DataItem[] = [
     {
-      key: '1',
       name: 'John Brown',
       age: 32,
       address: 'New York No. 1 Lake Park'
     },
     {
-      key: '2',
       name: 'Jim Green',
       age: 42,
       address: 'London No. 1 Lake Park'
     },
     {
-      key: '3',
       name: 'Joe Black',
       age: 32,
       address: 'Sidney No. 1 Lake Park'
-    }];
+    },
+    {
+      name: 'Jim Red',
+      age: 32,
+      address: 'London No. 2 Lake Park'
+    }
+  ];
+  listOfDisplayData = [...this.listOfData];
+
+  reset(): void {
+    this.searchValue = '';
+    this.search();
+  }
+
+  search(): void {
+    this.visible = false;
+    this.listOfDisplayData = this.listOfData.filter((item: DataItem) => item.name.indexOf(this.searchValue) !== -1);
+  }
 }
