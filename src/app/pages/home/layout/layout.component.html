@@ -9,7 +9,7 @@
       <a [routerLink]="['/home']">
         <div class="logo-vet">
           <i class="fa-solid fa-shield-dog"></i>
-          <h4>MyVet</h4>
+          <h4 *ngIf="!isCollapsed">MyVet</h4>
         </div>
       </a>
     </div>
@@ -19,51 +19,51 @@
           <li nz-submenu nzOpen nzTitle="Registro" nzIcon="">
             <ul>
               <li nz-menu-item nzMatchRouter>
-                <a [routerLink]="['/home/patient']">Pacientes</a>
+                <a [routerLink]="['/home/patient/list']">Pacientes</a>
               </li>
               <li nz-menu-item nzMatchRouter>
-                <a [routerLink]="['/home/owners']">Dueños</a>
+                <a [routerLink]="['/home/owner']">Dueños</a>
               </li>
             </ul>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/home/query']">Consultas</a>
+            <a [routerLink]="['/home/patient/query/list']">Consultas</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/home/turn']">Turnos</a>
+            <a [routerLink]="['/home/patient/turn/list']">Turnos</a>
           </li>
         </ul>
       </li>
       <li nz-submenu nzOpen nzTitle="Usuarios" nzIcon="user">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/home/medical']">Médicos</a>
+            <a [routerLink]="['/home/user']">Médicos</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/home/receptionist']">Recepcionistas</a>
+            <a [routerLink]="['/home/user']">Recepcionistas</a>
           </li>
         </ul>
       </li>
       <li nz-submenu nzOpen nzTitle="Servicios" nzIcon="shopping">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/home/hairdressing']">Peluqueria</a>
+            <a [routerLink]="['/home/service/hairdressing/list']">Peluqueria</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/home/hosting']">Hosting</a>
+            <a [routerLink]="['/home/service/hosting/list']">Hosting</a>
           </li>
         </ul>
       </li>
       <li nz-submenu nzOpen nzTitle="Ventas" nzIcon="barcode">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/home/sale']">Ventas</a>
+            <a [routerLink]="['/home/sale/sale']">Ventas</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/home/product']">Productos</a>
+            <a [routerLink]="['/home/sale/products/list']">Productos</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['/home/medicine']">Medicamentos</a>
+            <a [routerLink]="['/home/sale/medicine/list']">Medicamentos</a>
           </li>
         </ul>
       </li>
